@@ -1,0 +1,15 @@
+<h2><%= @newmessage.topic%></h2>
+<%= @newmessage.created_at %>
+
+
+
+<p><%= @newmessage.category_name %></p>
+
+    <%= simple_format(@newmessage.content)%>
+
+
+<% if false %>
+
+<% end %>
+
+    <p><%= link_to 'Back to index', newmessages_path %></p>

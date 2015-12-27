@@ -1,0 +1,2 @@
+module NewmessagesHelper
+end

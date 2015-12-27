@@ -1,0 +1,20 @@
+<h1>Breaking News</h1> <%= Time.now%>
+
+<div class="container" style="background: grey">
+<h1 style="color: brown", align="center"> 緊急發佈 </h1></div>
+
+
+<% @newmessages.each do |n| %>
+<%= n.topic %>
+<%= n.content %>
+
+
+
+
+  <%= link_to "Show", newmessage_path(n),:class => "btn btn-primary" %>
+  <br/>
+<% end %>
+<%= link_to 'New Message', new_newmessage_path %>
+<%= paginate @newmessages %>
+
+

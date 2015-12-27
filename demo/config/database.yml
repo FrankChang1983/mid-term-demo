@@ -20,6 +20,9 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+
 production:
-  <<: *default
-  database: db/production.sqlite3
+# 縮排規定嚴格：不能有空格  否則rails跑起來會錯誤
+  adapter: postgresql
+  # 一定要兩格
+  encoding: unicode
