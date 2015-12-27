@@ -2,11 +2,13 @@ class NewmessagesController < ApplicationController
 
 # before_action :authenticate_user!, :except => [:index]
 
-    before_action :set_newmessage, :only =>[:show, :update, :edit, :destroy, :dashboard]
+    before_action :set_newmessage, :only =>[:show, :update, :edit, :destroy]
 
 
   def index
-    @newmessages = Newmessage.page(params[:page]).per(10)
+    @newmessages = Newmessage.page(params[:page]).per(5)
+
+
   end
 
   def new
@@ -20,7 +22,7 @@ class NewmessagesController < ApplicationController
       flash[:notice] = "新增成功"
         redirect_to newmessages_url
     else
-    render :action => :index   # new.html..erb
+    render :action => :new   # new.html..erb
         # 當輸入沒填滿則顯示警告視窗
     end
   end
@@ -44,7 +46,6 @@ class NewmessagesController < ApplicationController
 
 
    def destroy
-      # @event = Event.find(params[:id])
 
       @newmessage.destroy
 
@@ -62,11 +63,9 @@ class NewmessagesController < ApplicationController
   end
 
    def newmessage_params
-    params.require(:newmessage).permit(:topic, :content)
+    params.require(:newmessage).permit(:topic, :content, :category_id, :user_id)
    end
 
 end
-     # def
-      # @newmessages =@newmessages.page(params[:page]).per(5)
-     # end
+
 

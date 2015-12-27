@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  # devise_for :users
+   # devise_for :users
+   resources :category
   resources :newmessages do
    resources :comments
+
   end
 
   root :to => "newmessages#index"

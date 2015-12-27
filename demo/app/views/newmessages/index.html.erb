@@ -1,20 +1,51 @@
 <h1>Breaking News</h1> <%= Time.now%>
 
 <div class="container" style="background: grey">
-<h1 style="color: brown", align="center"> 緊急發佈 </h1></div>
+  <h1 style="color: brown", align="center"> 緊急發佈 </h1>
+</div>
+
+<table>
+  <caption style="background: red">即時訊息</caption>
+  <thead>
+    <tr>
+      <th>文章標題</th>
+      <th>分類</th>
+      <th>作者</th>
+      <th>建立時間</th>
+      <th>內容</th>
+      <th>回覆數</th>
+      <th>詳細內容</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @newmessages.each do |n| %>
+    <tr>
+      <td><%= n.topic %></td>
+      <td><%= n.category_id%> </td>
+      <td><%= n.user.try(:last_name) %></td>
+      <td><%= n.created_at %></td>
+      <td><%= n.content %></td>
+      <td><%=  %></td>
+      <td>
+          <%= link_to "詳細", newmessage_path(n),:class => "btn btn-primary" %>
+      </td>
+      <td>
+          <%= link_to "刪除", newmessage_path(n), :method => :delete,  :data => { :confirm => "Are You Sure?" }, :class => "btn btn-danger" %>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
 
 
-<% @newmessages.each do |n| %>
-<%= n.topic %>
-<%= n.content %>
 
 
 
 
-  <%= link_to "Show", newmessage_path(n),:class => "btn btn-primary" %>
-  <br/>
-<% end %>
-<%= link_to 'New Message', new_newmessage_path %>
+<hr>
+
+<p><%= link_to '發表文章', new_newmessage_path %></p>
 <%= paginate @newmessages %>
 
 

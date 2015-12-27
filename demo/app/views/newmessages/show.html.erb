@@ -1,9 +1,13 @@
-<h2><%= @newmessage.topic%></h2>
-<%= @newmessage.created_at %>
+<h2><%= "文章標題：" + @newmessage.topic%></h2>
+<%= "發布時間 :" %>
+<%=  @newmessage.created_at %>
 
 
+<hr>
 
-<p><%= @newmessage.category_name %></p>
+<%= "類別: " + @newmessage.category.name %>
+<hr>
+ <%= "發表內容： "%>
 
     <%= simple_format(@newmessage.content)%>
 
@@ -11,5 +15,8 @@
 <% if false %>
 
 <% end %>
+<hr>
+<%= link_to "新增回覆", new_newmessage_comment_path(@newmessage)%>
+
 
     <p><%= link_to 'Back to index', newmessages_path %></p>
