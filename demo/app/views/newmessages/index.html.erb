@@ -1,4 +1,4 @@
-<h1>Breaking News</h1> <%= Time.now%>
+<h1 style="color: red">Breaking News</h1> <%= Time.now%>
 
 <div class="container" style="background: grey">
   <h1 style="color: brown", align="center"> 緊急發佈 </h1>
@@ -20,7 +20,7 @@
   </thead>
   <tbody>
   <% @newmessages.each do |n| %>
-    <tr>
+    <tr style="background: grey">
       <td><%= n.topic %></td>
       <td><%= n.category_id%> </td>
       <td><%= n.user.try(:last_name) %></td>
@@ -28,7 +28,10 @@
       <td><%= n.content %></td>
       <td><%=  %></td>
       <td>
-          <%= link_to "詳細", newmessage_path(n),:class => "btn btn-primary" %>
+          <%= link_to "進入", newmessage_path(n),:class => "btn btn-primary" %>
+      </td>
+      <td>
+          <%= link_to "編輯", edit_newmessage_path(n),:class => "btn btn-primary" %>
       </td>
       <td>
           <%= link_to "刪除", newmessage_path(n), :method => :delete,  :data => { :confirm => "Are You Sure?" }, :class => "btn btn-danger" %>
