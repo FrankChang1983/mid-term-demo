@@ -15,8 +15,55 @@
 <% if false %>
 
 <% end %>
-<hr>
-<%= link_to "新增回覆", new_newmessage_comment_path(@newmessage)%>
 
 
-    <p><%= link_to 'Back to index', newmessages_path %></p>
+<table style="background: grey">
+<% @newmessage.comments.each do |c| %>
+  <caption> </caption>
+  <thead>
+    <tr>
+      <th>
+        <%= link_to "編輯",
+        newmessage_path(cid: c.id), :class => "btn btn-primary"%>
+      </th>
+      <th>
+        <%= link_to "刪除", newmessage_comment_path(@newmessage,c), :method => :delete, :data => { :confirm => "Are You Sure?" }, :class => "btn btn-danger" %>
+      </th>
+      <th>發表人：</th>
+      <th>內容： </th>
+      <th>發表時間：</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td> <%= c.user.email %> </td>
+      <td style="color: blue"> <%= c.comment %> </td>
+      <td>
+          <%=c.created_at.to_s(:short) %>
+      </td>
+    </tr>
+  </tbody>
+  <% end%>
+</table>
+
+
+<%= form_for [@newmessage, @comment] do |f| %>
+<% if @comment.errors %>
+  <ul>
+  <% @comment.errors.full_messages.each do |e| %>
+    <li><%= e %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+  <div class="form-group">
+  <%= f.label :comment, "留言" %>
+    <%= f.text_area :comment, :required => true, :class => "form-control" %>
+  </div>
+
+  <%= f.submit "新增留言", :class => "btn btn-primary" %>
+<% end %>
+
+  <p><%= link_to 'Back to index', newmessages_path %></p>

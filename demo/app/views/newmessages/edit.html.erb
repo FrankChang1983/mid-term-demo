@@ -2,7 +2,9 @@
 
 <%= form_for @newmessage, :url => newmessage_path(@newmessage),:method =>:patch do |f| %>
 
-  <%= render :partial => "form", :locals => {:f => f} %>
+<%= render :partial => "form", :locals => {:f => f} %>
 
- <br>   <%= f.submit "更新修改", :class => "btn btn-primary" %>
+<br><%= f.submit "更新修改", :class => "btn btn-primary" %>
+
+<%= link_to "返回", newmessages_path, :class => "btn btn-default" %>
 <% end %>

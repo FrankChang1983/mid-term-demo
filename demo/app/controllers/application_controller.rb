@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-
   protected
 
     def configure_permitted_parameters
@@ -16,4 +15,9 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:account_update) << :last_name
 
     end
+
+  def set_message
+    @newmessage = Newmessage.find( params[:newmessage_id] )
+  end
+
 end
