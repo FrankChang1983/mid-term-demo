@@ -4,11 +4,15 @@
   <h1 style="color: brown", align="center"> 佈告欄 </h1>
 </div>
 
-文章分類：
-<%= link_to ""
-<!-- # < @categories.each do |c| %> -->
-<%#= c.name, :category => c %>
+<%= form_tag newmessages_path, :method => :get do %>
+  <%= text_field_tag "keyword" %>
+  <%= submit_tag "Search" %>
+<% end %>
 
+文章分類：
+<% Category.all.each do |c| %>
+  <%= link_to c.name, newmessages_path( :cid => c ) %>
+<% end %>
 
 <table>
   <caption style="background: red"> 即時訊息 </caption>

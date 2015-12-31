@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
-   resources :category
-  resources :newmessages do
-   resources :comments , :controller => 'comments'
+  resources :category
 
+  resources :newmessages do
+    resources :comments , :controller => 'comments'
   end
 
   root :to => "newmessages#index"
